@@ -67,5 +67,25 @@ pub fn generate_app() -> App<'static, 'static> {
         /* *
          * HOST DISCOVERY
          */
-
+        .arg(
+            Arg::with_name(list_scan::NAME)
+                .long(list_scan::LONG)
+                .help(list_scan::HELP)
+                .takes_value(false)
+                .group(host_discovery::NAME)
+        )
+        .arg(
+            Arg::with_name(ping_scan::NAME)
+                .long(ping_scan::LONG)
+                .help(ping_scan::HELP)
+                .takes_value(false)
+                .group(host_discovery::NAME)
+        )
+        .arg(
+            Arg::with_name(skip_host_discovery::NAME)
+                .long(skip_host_discovery::LONG)
+                .help(skip_host_discovery::HELP)
+                .takes_value(false)
+                .group(host_discovery::NAME)
+        )
 }

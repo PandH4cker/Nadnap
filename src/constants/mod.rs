@@ -31,10 +31,30 @@ pub mod args {
         pub const HELP: &str = "Exclude list from file";
         pub const NUMBER_OF_VALUES: u64 = 1_64;
     }
+
+    pub mod list_scan {
+        pub const NAME: &str = "List Scan";
+        pub const LONG: &str = "sL";
+        pub const HELP: &str = "List Scan - simply list targets to scan";
+    }
+    pub mod ping_scan {
+        pub const NAME: &str = "Ping Scan";
+        pub const LONG: &str = "sn";
+        pub const HELP: &str = "Ping Scan - disable port scan";
+    }
+    pub mod skip_host_discovery {
+        pub const NAME: &str = "Skip Host Discovery";
+        pub const LONG: &str = "Pn";
+        pub const HELP: &str = "Treat all hosts as online -- skip host discovery";
+    }
 }
 
 pub mod groups {
     pub mod target_specification {
         pub const NAME: &str = "Target Specification";
+    }
+
+    pub mod host_discovery {
+        pub const NAME: &str = "Host Discovery";
     }
 }
