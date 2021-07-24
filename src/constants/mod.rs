@@ -20,9 +20,16 @@ pub mod args {
     pub mod exclude_hosts {
         pub const NAME: &str = "Exclude Hosts";
         pub const LONG: &str = "exclude";
-        pub const VALUE_NAME: &str = "host";
+        pub const VALUE_NAME: &str = "host1[,host2][,host3], ...";
         pub const HELP: &str = "Exclude hosts/networks";
-        pub const NUMBER_OF_VALUES: u64 = 1_u64;
+    }
+
+    pub mod exclude_file {
+        pub const NAME: &str = "Exclude File";
+        pub const LONG: &str = "exludefile";
+        pub const VALUE_NAME: &str = "exclude_file";
+        pub const HELP: &str = "Exclude list from file";
+        pub const NUMBER_OF_VALUES: u64 = 1_64;
     }
 }
 

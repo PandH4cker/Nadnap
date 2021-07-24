@@ -1,6 +1,6 @@
 [package]
 name = "Nadnap"
-version = "0.4.1"
+version = "0.7.1"
 description = "Nadnap - the Powerful Network Scanner"
 authors = [
     "Raphaël Dray <dray@et.esiea.fr>"
@@ -11,3 +11,5 @@ edition = "2018"
 
 [dependencies]
 clap = "~2.33.3"
+regex = "1"
+lazy_static = "1.4.0"

@@ -20,6 +20,9 @@ pub fn generate_app() -> App<'static, 'static> {
         .author(crate_authors!())
         .about(crate_description!())
 
+        /* *
+         * TARGET SPECIFICATION
+         */
         .arg(
             Arg::with_name(input_list::NAME)
                 .long(input_list::LONG)
@@ -47,5 +50,22 @@ pub fn generate_app() -> App<'static, 'static> {
                 .help(exclude_hosts::HELP)
                 .takes_value(true)
                 .group(target_specification::NAME)
+                .validator(validators::regex::is_hosts)
+                .use_delimiter(true)
         )
+        .arg(
+            Arg::with_name(exclude_file::NAME)
+                .long(exclude_file::LONG)
+                .value_name(exclude_file::VALUE_NAME)
+                .help(exclude_file::HELP)
+                .takes_value(true)
+                .group(target_specification::NAME)
+                .validator(validators::fs::is_file)
+                .number_of_values(exclude_file::NUMBER_OF_VALUES)
+        )
+
+        /* *
+         * HOST DISCOVERY
+         */
+
 }
