@@ -1,6 +1,9 @@
-pub const USAGE_STR: &str = concat!(clap::crate_name!(), " [Scan Type(s)] [Options] target specification");
+pub const USAGE_STR: &str = concat!(clap::crate_name!(), " [Scan Type(s)] [Options] -- {target specification}");
 
 pub mod args {
+    pub mod target {
+        pub const NAME: &str = "Target";
+    }
     pub mod input_list {
         pub const NAME: &str = "Input List";
         pub const LONG: &str = "iL";
@@ -114,14 +117,131 @@ pub mod args {
         pub const LONG: &str = "traceroute";
         pub const HELP: &str = "Trace hop path to each host";
     }
+    pub mod tcp_syn_scan {
+        pub const NAME: &str = "TCP SYN Scan";
+        pub const LONG: &str = "sS";
+        pub const HELP: &str = "TCP SYN scan";
+    }
+    pub mod tcp_connect_scan {
+        pub const NAME: &str = "TCP Connect() Scan";
+        pub const LONG: &str = "sT";
+        pub const HELP: &str = "TCP Connect() scan";
+    }
+    pub mod tcp_ack_scan {
+        pub const NAME: &str = "TCP ACK Scan";
+        pub const LONG: &str = "sA";
+        pub const HELP: &str = "TCP ACK scan";
+    }
+    pub mod tcp_window_scan {
+        pub const NAME: &str = "TCP Window Scan";
+        pub const LONG: &str = "sW";
+        pub const HELP: &str = "TCP Window scan";
+    }
+    pub mod tcp_maimon_scan {
+        pub const NAME: &str = "TCP Maimon Scan";
+        pub const LONG: &str = "sM";
+        pub const HELP: &str = "TCP Maimon scan";
+    }
+    pub mod udp_scan {
+        pub const NAME: &str = "UDP Scan";
+        pub const LONG: &str = "sU";
+        pub const HELP: &str = "UDP scan";
+    }
+    pub mod tcp_null_scan {
+        pub const NAME: &str = "TCP Null Scan";
+        pub const LONG: &str = "sN";
+        pub const HELP: &str = "TCP Null scan";
+    }
+    pub mod tcp_fin_scan {
+        pub const NAME: &str = "TCP FIN Scan";
+        pub const LONG: &str = "sF";
+        pub const HELP: &str = "TCP FIN scan";
+    }
+    pub mod tcp_xmas_scan {
+        pub const NAME: &str = "TCP Xmas Scan";
+        pub const LONG: &str = "sX";
+        pub const HELP: &str = "TCP Xmas scan";
+    }
+    pub mod scan_flags {
+        pub const NAME: &str = "TCP scan flags";
+        pub const LONG: &str = "scanflags";
+        pub const HELP: &str = "Customize TCP scan flags";
+        pub const VALUE_NAME: &str = "flags";
+    }
+    pub mod idle_scan {
+        pub const NAME: &str = "Idle scan";
+        pub const LONG: &str = "sI";
+        pub const HELP: &str = "Idle scan";
+        pub const VALUE_NAME: &str = "zombie host[:probeport]";
+    }
+    pub mod sctp_init_scan {
+        pub const NAME: &str = "SCTP INIT scan";
+        pub const LONG: &str = "sY";
+        pub const HELP: &str = "SCTP INIT scan";
+    }
+    pub mod sctp_cookie_echo_scan {
+        pub const NAME: &str = "SCTP COOKIE-ECHO scan";
+        pub const LONG: &str = "sZ";
+        pub const HELP: &str = "SCTP COOKIE-ECHO scan";
+    }
+    pub mod ip_protocol_scan {
+        pub const NAME: &str = "IP Protocol scan";
+        pub const LONG: &str = "sO";
+        pub const HELP: &str = "IP protocol scan";
+    }
+    pub mod ftp_bounce_scan {
+        pub const NAME: &str = "FTP Bounce scan";
+        pub const SHORT: &str = "b";
+        pub const HELP: &str = "FTP bounce scan";
+        pub const VALUE_NAME: &str = "FTP relay host";
+    }
+    pub mod port_ranges {
+        pub const NAME: &str = "Port ranges";
+        pub const SHORT: &str = "p";
+        pub const HELP: &str = "Only scan specified ports";
+        pub const VALUE_NAME: &str = "port ranges";
+    }
+    pub mod exclude_ports {
+        pub const NAME: &str = "Exclude ports";
+        pub const LONG: &str = "exclude-ports";
+        pub const HELP: &str = "Exclude the specified ports from scanning";
+        pub const VALUE_NAME: &str = "port ranges";
+    }
+    pub mod fast_mode {
+        pub const NAME: &str = "Fast mode";
+        pub const SHORT: &str = "F";
+        pub const HELP: &str = "Fast mode - Scan fewer ports than the default scan";
+    }
+    pub mod dont_randomize {
+        pub const NAME: &str = "Don't randomize";
+        pub const SHORT: &str = "r";
+        pub const HELP: &str = "Scan ports consecutively - don't randomize";
+    }
+    pub mod top_ports {
+        pub const NAME: &str = "Top ports";
+        pub const LONG: &str = "top-ports";
+        pub const HELP: &str = "Scan <number> most common ports";
+        pub const VALUE_NAME: &str = "number";
+    }
+    pub mod port_ratio {
+        pub const NAME: &str = "Port ratio";
+        pub const LONG: &str = "port-ratio";
+        pub const HELP: &str = "Scan ports more common than <ratio>";
+        pub const VALUE_NAME: &str = "ratio";
+    }
 }
 
 pub mod groups {
     pub mod target_specification {
         pub const NAME: &str = "Target Specification";
     }
-
     pub mod host_discovery {
         pub const NAME: &str = "Host Discovery";
+    }
+    pub mod scan_techniques {
+        pub const NAME: &str = "Scan Techniques";
+    }
+    pub mod port_specification_scan_order {
+        pub const NAME: &str = "Port Specification And Scan Order";
     }
 }

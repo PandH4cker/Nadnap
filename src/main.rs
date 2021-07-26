@@ -7,6 +7,12 @@ mod constants;
 mod cli;
 
 fn main() {
-    let _matches = generate_app().get_matches();
+    let matches = generate_app().get_matches();
+    let targets : Vec<&str> = matches.values_of(constants::args::target::NAME)
+                                     .unwrap()
+                                     .collect::<Vec<&str>>();
+    for t in targets {
+        println!("{}", t);
+    }
 
 }
