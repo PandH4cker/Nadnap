@@ -8,4 +8,5 @@ mod cli;
 
 fn main() {
     let _matches = generate_app().get_matches();
+
 }

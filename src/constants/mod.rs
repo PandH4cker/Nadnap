@@ -8,7 +8,6 @@ pub mod args {
         pub const HELP: &str = "Input from list of hosts/networks";
         pub const NUMBER_OF_VALUES: u64 = 1_u64;
     }
-
     pub mod input_random {
         pub const NAME: &str = "Input Random";
         pub const LONG: &str = "iR";
@@ -16,14 +15,12 @@ pub mod args {
         pub const HELP: &str = "Choose random targets";
         pub const NUMBER_OF_VALUES: u64 = 1_u64;
     }
-
     pub mod exclude_hosts {
         pub const NAME: &str = "Exclude Hosts";
         pub const LONG: &str = "exclude";
-        pub const VALUE_NAME: &str = "host1[,host2][,host3], ...";
+        pub const VALUE_NAME: &str = "host1[,host2][,host3],...";
         pub const HELP: &str = "Exclude hosts/networks";
     }
-
     pub mod exclude_file {
         pub const NAME: &str = "Exclude File";
         pub const LONG: &str = "exludefile";
@@ -31,7 +28,6 @@ pub mod args {
         pub const HELP: &str = "Exclude list from file";
         pub const NUMBER_OF_VALUES: u64 = 1_64;
     }
-
     pub mod list_scan {
         pub const NAME: &str = "List Scan";
         pub const LONG: &str = "sL";
@@ -46,6 +42,77 @@ pub mod args {
         pub const NAME: &str = "Skip Host Discovery";
         pub const LONG: &str = "Pn";
         pub const HELP: &str = "Treat all hosts as online -- skip host discovery";
+    }
+    pub mod tcp_syn_discovery {
+        pub const NAME: &str = "TCP SYN Discovery";
+        pub const LONG: &str = "PS";
+        pub const HELP: &str = "TCP SYN discovery to given ports";
+        pub const VALUE_NAME: &str = "portlist";
+    }
+    pub mod tcp_ack_discovery {
+        pub const NAME: &str = "TCP ACK Discovery";
+        pub const LONG: &str = "PA";
+        pub const HELP: &str = "TCP ACK discovery to given ports";
+        pub const VALUE_NAME: &str = "portlist";
+    }
+    pub mod udp_discovery {
+        pub const NAME: &str = "UDP Discovery";
+        pub const LONG: &str = "PU";
+        pub const HELP: &str = "UDP discovery to given ports";
+        pub const VALUE_NAME: &str = "portlist";
+    }
+    pub mod sctp_discovery {
+        pub const NAME: &str = "SCTP Discovery";
+        pub const LONG: &str = "PY";
+        pub const HELP: &str = "SCTP discovery to given ports";
+        pub const VALUE_NAME: &str = "portlist";
+    }
+    pub mod icmp_echo_discovery {
+        pub const NAME: &str = "ICMP Echo Discovery";
+        pub const LONG: &str = "PE";
+        pub const HELP: &str = "ICMP echo request discovery probes";
+    }
+    pub mod icmp_timestamp_discovery {
+        pub const NAME: &str = "ICMP Timestamp Discovery";
+        pub const LONG: &str = "PP";
+        pub const HELP: &str = "ICMP Timestamp request discovery probes";
+    }
+    pub mod icmp_netmask_discovery {
+        pub const NAME: &str = "ICMP Netmask Discovery";
+        pub const LONG: &str = "PM";
+        pub const HELP: &str = "ICMP Netmask request discovery probes";
+    }
+    pub mod ip_protocol_ping {
+        pub const NAME: &str = "IP Protocol Ping";
+        pub const LONG: &str = "PO";
+        pub const HELP: &str = "IP Protocol Ping";
+        pub const VALUE_NAME: &str = "protocol list";
+    }
+    pub mod never_resolve {
+        pub const NAME: &str = "Never Resolve";
+        pub const SHORT: &str = "n";
+        pub const HELP: &str = "Never do DNS resolution";
+    }
+    pub mod always_resolve {
+        pub const NAME: &str = "Always Resolve";
+        pub const SHORT: &str = "R";
+        pub const HELP: &str = "Always do DNS resolution";
+    }
+    pub mod dns_servers {
+        pub const NAME: &str = "DNS Servers";
+        pub const LONG: &str = "dns-servers";
+        pub const HELP: &str = "Specify custom DNS servers";
+        pub const VALUE_NAME: &str = "serv1[,serv2],...";
+    }
+    pub mod system_dns {
+        pub const NAME: &str = "System DNS";
+        pub const LONG: &str = "system-dns";
+        pub const HELP: &str = "Use OS's DNS resolver";
+    }
+    pub mod traceroute {
+        pub const NAME: &str = "Traceroute";
+        pub const LONG: &str = "traceroute";
+        pub const HELP: &str = "Trace hop path to each host";
     }
 }
 

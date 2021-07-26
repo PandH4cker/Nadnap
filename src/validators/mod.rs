@@ -1,3 +1,3 @@
 pub mod fs;
 pub mod num;
-pub mod regex;
+pub mod net;
