@@ -5,6 +5,12 @@ description = "Nadnap - the Powerful Network Scanner"
 authors = [
     "Raphaël Dray <dray@et.esiea.fr>"
 ]
+license = "MIT"
+license-file = "LICENSE.md"
+readme = "README.md"
+repository = "https://github.com/MrrRaph/Nadnap"
+keywords = ["Network", "Scanner"]
+publish = false
 edition = "2018"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
