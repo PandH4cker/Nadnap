@@ -13,7 +13,8 @@ pub fn generate_app() -> App<'static> {
         .author(crate_authors!())
         .about(crate_description!())
         .setting(AppSettings::ColoredHelp)
-
+        .setting(AppSettings::DeriveDisplayOrder)
+        .setting(AppSettings::ArgRequiredElseHelp)
         /* *
          * TARGET SPECIFICATION
          */
@@ -26,7 +27,6 @@ pub fn generate_app() -> App<'static> {
                 .multiple(true)
                 .validator(validators::net::is_hosts)
                 .required_unless_present_any(&[input_list::NAME, input_random::NAME])
-                .display_order(1)
         )
         .arg(
             Arg::new(input_list::NAME)
@@ -37,7 +37,6 @@ pub fn generate_app() -> App<'static> {
                 .number_of_values(input_list::NUMBER_OF_VALUES)
                 .validator(validators::fs::is_file)
                 .required_unless_present_any(&[target::NAME, input_random::NAME])
-                .display_order(2)
         )
         .arg(
             Arg::new(input_random::NAME)
@@ -48,7 +47,6 @@ pub fn generate_app() -> App<'static> {
                 .number_of_values(input_random::NUMBER_OF_VALUES)
                 .validator(validators::num::is_positive)
                 .required_unless_present_any(&[input_list::NAME, target::NAME])
-                .display_order(3)
         )
         .arg(
             Arg::new(exclude_hosts::NAME)
@@ -58,7 +56,6 @@ pub fn generate_app() -> App<'static> {
                 .takes_value(true)
                 .validator(validators::net::is_hosts)
                 .use_delimiter(true)
-                .display_order(4)
         )
         .arg(
             Arg::new(exclude_file::NAME)
@@ -68,7 +65,6 @@ pub fn generate_app() -> App<'static> {
                 .takes_value(true)
                 .validator(validators::fs::is_file)
                 .number_of_values(exclude_file::NUMBER_OF_VALUES)
-                .display_order(5)
         )
         .group(
             ArgGroup::new(target_specification::NAME)
@@ -88,21 +84,18 @@ pub fn generate_app() -> App<'static> {
                 .long(list_scan::LONG)
                 .about(list_scan::HELP)
                 .takes_value(false)
-                .display_order(1)
         )
         .arg(
             Arg::new(ping_scan::NAME)
                 .long(ping_scan::LONG)
                 .about(ping_scan::HELP)
                 .takes_value(false)
-                .display_order(2)
         )
         .arg(
             Arg::new(skip_host_discovery::NAME)
                 .long(skip_host_discovery::LONG)
                 .about(skip_host_discovery::HELP)
                 .takes_value(false)
-                .display_order(3)
         )
         .arg(
             Arg::new(tcp_syn_discovery::NAME)
@@ -110,7 +103,6 @@ pub fn generate_app() -> App<'static> {
                 .about(tcp_syn_discovery::HELP)
                 .value_name(tcp_syn_discovery::VALUE_NAME)
                 .takes_value(true)
-                .display_order(4)
         )
         .arg(
             Arg::new(tcp_ack_discovery::NAME)
@@ -118,7 +110,6 @@ pub fn generate_app() -> App<'static> {
                 .about(tcp_ack_discovery::HELP)
                 .value_name(tcp_ack_discovery::VALUE_NAME)
                 .takes_value(true)
-                .display_order(5)
         )
         .arg(
             Arg::new(udp_discovery::NAME)
@@ -126,7 +117,6 @@ pub fn generate_app() -> App<'static> {
                 .about(udp_discovery::HELP)
                 .value_name(udp_discovery::VALUE_NAME)
                 .takes_value(true)
-                .display_order(6)
         )
         .arg(
             Arg::new(sctp_discovery::NAME)
@@ -134,28 +124,24 @@ pub fn generate_app() -> App<'static> {
                 .about(sctp_discovery::HELP)
                 .value_name(sctp_discovery::VALUE_NAME)
                 .takes_value(true)
-                .display_order(7)
         )
         .arg(
             Arg::new(icmp_echo_discovery::NAME)
                 .long(icmp_echo_discovery::LONG)
                 .about(icmp_echo_discovery::HELP)
                 .takes_value(false)
-                .display_order(8)
         )
         .arg(
             Arg::new(icmp_timestamp_discovery::NAME)
                 .long(icmp_timestamp_discovery::LONG)
                 .about(icmp_timestamp_discovery::HELP)
                 .takes_value(false)
-                .display_order(9)
         )
         .arg(
             Arg::new(icmp_netmask_discovery::NAME)
                 .long(icmp_netmask_discovery::LONG)
                 .about(icmp_netmask_discovery::HELP)
                 .takes_value(false)
-                .display_order(10)
         )
         .arg(
             Arg::new(ip_protocol_ping::NAME)
@@ -163,7 +149,6 @@ pub fn generate_app() -> App<'static> {
                 .about(ip_protocol_ping::HELP)
                 .takes_value(true)
                 .value_name(ip_protocol_ping::VALUE_NAME)
-                .display_order(11)
         )
         .arg(
             Arg::new(never_resolve::NAME)
@@ -171,7 +156,6 @@ pub fn generate_app() -> App<'static> {
                 .about(never_resolve::HELP)
                 .takes_value(false)
                 .conflicts_with(always_resolve::NAME)
-                .display_order(12)
         )
         .arg(
             Arg::new(always_resolve::NAME)
@@ -179,7 +163,6 @@ pub fn generate_app() -> App<'static> {
                 .about(always_resolve::HELP)
                 .takes_value(false)
                 .conflicts_with(never_resolve::NAME)
-                .display_order(13)
         )
         .arg(
             Arg::new(dns_servers::NAME)
@@ -187,21 +170,18 @@ pub fn generate_app() -> App<'static> {
                 .about(dns_servers::HELP)
                 .takes_value(true)
                 .value_name(dns_servers::VALUE_NAME)
-                .display_order(14)
         )
         .arg(
             Arg::new(system_dns::NAME)
                 .long(system_dns::LONG)
                 .about(system_dns::HELP)
                 .takes_value(false)
-                .display_order(15)
         )
         .arg(
             Arg::new(traceroute::NAME)
                 .long(traceroute::LONG)
                 .about(traceroute::HELP)
                 .takes_value(false)
-                .display_order(16)
         )
         .group(
             ArgGroup::new(host_discovery::NAME)
@@ -224,63 +204,54 @@ pub fn generate_app() -> App<'static> {
                 .long(tcp_syn_scan::LONG)
                 .about(tcp_syn_scan::HELP)
                 .takes_value(false)
-                .display_order(1)
         )
         .arg(
             Arg::new(tcp_connect_scan::NAME)
                 .long(tcp_connect_scan::LONG)
                 .about(tcp_connect_scan::HELP)
                 .takes_value(false)
-                .display_order(2)
         )
         .arg(
             Arg::new(tcp_ack_scan::NAME)
                 .long(tcp_ack_scan::LONG)
                 .about(tcp_ack_scan::HELP)
                 .takes_value(false)
-                .display_order(3)
         )
         .arg(
             Arg::new(tcp_window_scan::NAME)
                 .long(tcp_window_scan::LONG)
                 .about(tcp_window_scan::HELP)
                 .takes_value(false)
-                .display_order(4)
         )
         .arg(
             Arg::new(tcp_maimon_scan::NAME)
                 .long(tcp_maimon_scan::LONG)
                 .about(tcp_maimon_scan::HELP)
                 .takes_value(false)
-                .display_order(5)
         )
         .arg(
             Arg::new(udp_scan::NAME)
                 .long(udp_scan::LONG)
                 .about(udp_scan::HELP)
                 .takes_value(false)
-                .display_order(6)
         )
         .arg(
             Arg::new(tcp_null_scan::NAME)
                 .long(tcp_null_scan::LONG)
                 .about(tcp_null_scan::HELP)
                 .takes_value(false)
-                .display_order(7)
         )
         .arg(
             Arg::new(tcp_fin_scan::NAME)
                 .long(tcp_fin_scan::LONG)
                 .about(tcp_fin_scan::HELP)
                 .takes_value(false)
-                .display_order(8)
         )
         .arg(
             Arg::new(tcp_xmas_scan::NAME)
                 .long(tcp_xmas_scan::LONG)
                 .about(tcp_xmas_scan::HELP)
                 .takes_value(false)
-                .display_order(9)
         )
         .arg(
             Arg::new(scan_flags::NAME)
@@ -288,42 +259,36 @@ pub fn generate_app() -> App<'static> {
                 .about(scan_flags::HELP)
                 .takes_value(true)
                 .value_name(scan_flags::VALUE_NAME)
-                .display_order(10)
         )
         .arg(
             Arg::new(idle_scan::NAME)
                 .long(idle_scan::LONG)
                 .about(idle_scan::HELP)
                 .takes_value(false)
-                .display_order(11)
         )
         .arg(
             Arg::new(sctp_init_scan::NAME)
                 .long(sctp_init_scan::LONG)
                 .about(sctp_init_scan::HELP)
                 .takes_value(false)
-                .display_order(12)
         )
         .arg(
             Arg::new(sctp_cookie_echo_scan::NAME)
                 .long(sctp_cookie_echo_scan::LONG)
                 .about(sctp_cookie_echo_scan::HELP)
                 .takes_value(false)
-                .display_order(13)
         )
         .arg(
             Arg::new(ip_protocol_scan::NAME)
                 .long(ip_protocol_scan::LONG)
                 .about(ip_protocol_scan::HELP)
                 .takes_value(false)
-                .display_order(14)
         )
         .arg(
             Arg::new(ftp_bounce_scan::NAME)
                 .short(ftp_bounce_scan::SHORT)
                 .about(ftp_bounce_scan::HELP)
                 .takes_value(false)
-                .display_order(15)
         )
         .group(
             ArgGroup::new(scan_techniques::NAME)
@@ -347,7 +312,6 @@ pub fn generate_app() -> App<'static> {
                 .about(port_ranges::HELP)
                 .takes_value(true)
                 .value_name(port_ranges::VALUE_NAME)
-                .display_order(1)
         )
         .arg(
             Arg::new(exclude_ports::NAME)
@@ -355,21 +319,18 @@ pub fn generate_app() -> App<'static> {
                 .about(exclude_ports::HELP)
                 .takes_value(true)
                 .value_name(exclude_ports::VALUE_NAME)
-                .display_order(2)
         )
         .arg(
             Arg::new(fast_mode::NAME)
                 .short(fast_mode::SHORT)
                 .about(fast_mode::HELP)
                 .takes_value(false)
-                .display_order(3)
         )
         .arg(
             Arg::new(dont_randomize::NAME)
                 .short(dont_randomize::SHORT)
                 .about(dont_randomize::HELP)
                 .takes_value(false)
-                .display_order(4)
         )
         .arg(
             Arg::new(top_ports::NAME)
@@ -377,7 +338,6 @@ pub fn generate_app() -> App<'static> {
                 .about(top_ports::HELP)
                 .takes_value(true)
                 .value_name(top_ports::VALUE_NAME)
-                .display_order(5)
         )
         .arg(
             Arg::new(port_ratio::NAME)
@@ -385,7 +345,6 @@ pub fn generate_app() -> App<'static> {
                 .about(port_ratio::HELP)
                 .takes_value(true)
                 .value_name(port_ratio::VALUE_NAME)
-                .display_order(6)
         )
         .group(
             ArgGroup::new(port_specification_scan_order::NAME)
