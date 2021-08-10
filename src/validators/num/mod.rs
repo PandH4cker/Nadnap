@@ -1,4 +1,4 @@
-pub fn is_positive(v: String) -> Result<(), String> {
+pub fn is_positive(v: &str) -> Result<(), String> {
     match v.parse::<u64>() {
         Ok(_) => { return Ok(()) }
         Err(_) => {
@@ -10,7 +10,7 @@ pub fn is_positive(v: String) -> Result<(), String> {
     Err(format!("{} isn't a positive number", &*v))
 }
 
-pub fn is_number(v: String) -> Result<(), String> {
+pub fn is_number(v: &str) -> Result<(), String> {
     match v.parse::<f64>() {
         Ok(_) => { Ok(()) }
         Err(_) => {
