@@ -1,5 +1,6 @@
 pub mod target {
     pub const NAME: &str = "Target";
+    pub const VALUE_DELIMITER: &str = " ";
 }
 pub mod input_list {
     pub const NAME: &str = "Input List";
@@ -225,4 +226,78 @@ pub mod port_ratio {
     pub const LONG: &str = "port-ratio";
     pub const HELP: &str = "Scan ports more common than <ratio>";
     pub const VALUE_NAME: &str = "ratio";
+}
+pub mod service_version_info {
+    pub const NAME: &str = "Service/Version info";
+    pub const LONG: &str = "sV";
+    pub const HELP: &str = "Probe open ports to determine service/version info";
+}
+pub mod version_intensity {
+    pub const NAME: &str = "Version intensity";
+    pub const LONG: &str = "version-intensity";
+    pub const HELP: &str = "Set from 0 (light) to 9 (try all probes)";
+    pub const VALUE_NAME: &str = "level";
+    pub const POSSIBLE_VALUES: &[&str] = &[
+        "1", "2", "3", "4", "5",
+        "6", "7", "8", "9"
+    ];
+}
+pub mod version_light {
+    pub const NAME: &str = "Version light";
+    pub const LONG: &str = "version-light";
+    pub const HELP: &str = "Limit to most likely probes (intensity 2)";
+}
+pub mod version_all {
+    pub const NAME: &str = "Version all";
+    pub const LONG: &str = "version-all";
+    pub const HELP: &str = "Try every single probe (intensity 9)";
+}
+pub mod version_trace {
+    pub const NAME: &str = "Version trace";
+    pub const LONG: &str = "version-trace";
+    pub const HELP: &str = "Show detailed version scan activity (for debugging)";
+}
+pub mod default_script {
+    pub const NAME: &str = "Default script";
+    pub const LONG: &str = "sC";
+    pub const HELP: &str = "equivalent to --script=default";
+}
+pub mod script {
+    pub const NAME: &str = "Script";
+    pub const LONG: &str = "script";
+    pub const HELP: &str = "<scripts> is a comma separated list of \
+    directories, script-files or script-categories";
+    pub const VALUE_NAME: &str = "scripts";
+    pub const VALUE_DELIMITER: &str = ",";
+}
+pub mod script_args {
+    pub const NAME: &str = "Script args";
+    pub const LONG: &str = "script-args";
+    pub const HELP: &str = "provide arguments to scripts";
+    pub const VALUE_NAME: &str = "n1=v1,[n2=v2,...]";
+    pub const VALUE_DELIMITER: &str = ",";
+}
+pub mod script_args_file {
+    pub const NAME: &str = "Script args file";
+    pub const LONG: &str = "script-args-file";
+    pub const HELP: &str = "provide Nadnap script args in a file";
+    pub const VALUE_NAME: &str = "filename";
+}
+pub mod script_trace {
+    pub const NAME: &str = "Script trace";
+    pub const LONG: &str = "script-trace";
+    pub const HELP: &str = "Show all data sent and received";
+}
+pub mod script_update_db {
+    pub const NAME: &str = "Script update db";
+    pub const LONG: &str = "script-updatedb";
+    pub const HELP: &str = "Update the script database.";
+}
+pub mod script_help {
+    pub const NAME: &str = "Script help";
+    pub const LONG: &str = "script-help";
+    pub const HELP: &str = "Show help about scripts.\n\
+    <scripts> is a comma-separated list of script-files or script-categories.";
+    pub const VALUE_NAME: &str = "scripts";
+    pub const VALUE_DELIMITER: &str = ",";
 }

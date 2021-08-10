@@ -1,9 +1,8 @@
-use clap::{crate_name, crate_version, crate_authors, crate_description, App, Arg, ArgGroup, AppSettings, ValueHint};
-use crate::constants::{
-    USAGE_STR,
-    args::*,
-    groups::*
+use clap::{
+    crate_name, crate_version, crate_authors, crate_description,
+    App, Arg, ArgGroup, AppSettings, ValueHint
 };
+use crate::constants::{USAGE_STR, args::*, groups::*, AFTER_HELP};
 use crate::validators;
 
 pub fn generate_app() -> App<'static> {
@@ -18,12 +17,12 @@ pub fn generate_app() -> App<'static> {
         /* *
          * TARGET SPECIFICATION
          */
-        .help_heading("TARGET SPECIFICATION")
+        .help_heading(target_specification::NAME)
         .arg(
             Arg::new(target::NAME)
                 .last(true)
                 .takes_value(true)
-                .value_delimiter(" ")
+                .value_delimiter(target::VALUE_DELIMITER)
                 .multiple(true)
                 .validator(validators::net::is_hosts)
                 .required_unless_present_any(&[input_list::NAME, input_random::NAME])
@@ -83,7 +82,7 @@ pub fn generate_app() -> App<'static> {
         /* *
          * HOST DISCOVERY
          */
-        .help_heading("HOST DISCOVERY")
+        .help_heading(host_discovery::NAME)
         .arg(
             Arg::new(list_scan::NAME)
                 .long(list_scan::LONG)
@@ -208,7 +207,7 @@ pub fn generate_app() -> App<'static> {
         /* *
          * SCAN TECHNIQUES
          */
-        .help_heading("SCAN TECHNIQUES")
+        .help_heading(scan_techniques::NAME)
         .arg(
             Arg::new(tcp_syn_scan::NAME)
                 .long(tcp_syn_scan::LONG)
@@ -315,7 +314,7 @@ pub fn generate_app() -> App<'static> {
         /* *
          * PORT SPECIFICATION AND SCAN ORDER
          */
-        .help_heading("PORT SPECIFICATION AND SCAN ORDER")
+        .help_heading(port_specification_scan_order::NAME)
         .arg(
             Arg::new(port_ranges::NAME)
                 .short(port_ranges::SHORT)
@@ -368,4 +367,112 @@ pub fn generate_app() -> App<'static> {
                 ])
                 .multiple(true)
         )
+        /* *
+         * SERVICE/VERSION DETECTION
+         */
+        .help_heading(service_ver_detection::NAME)
+        .arg(
+            Arg::new(service_version_info::NAME)
+                .about(service_version_info::HELP)
+                .takes_value(false)
+                .long(service_version_info::LONG)
+        )
+        .arg(
+            Arg::new(version_intensity::NAME)
+                .about(version_intensity::HELP)
+                .long(version_intensity::LONG)
+                .takes_value(true)
+                .value_name(version_intensity::VALUE_NAME)
+                .possible_values(version_intensity::POSSIBLE_VALUES)
+                .conflicts_with_all(&[version_all::NAME, version_light::NAME])
+        )
+        .arg(
+            Arg::new(version_light::NAME)
+                .about(version_light::HELP)
+                .long(version_light::LONG)
+                .takes_value(false)
+                .conflicts_with_all(&[version_intensity::NAME, version_all::NAME])
+        )
+        .arg(
+            Arg::new(version_all::NAME)
+                .about(version_all::HELP)
+                .long(version_all::LONG)
+                .takes_value(false)
+                .conflicts_with_all(&[version_light::NAME, version_intensity::NAME])
+        )
+        .arg(
+            Arg::new(version_trace::NAME)
+                .about(version_trace::HELP)
+                .long(version_trace::LONG)
+                .takes_value(false)
+        )
+        .group(
+            ArgGroup::new(service_ver_detection::NAME)
+                .args(&[
+                    service_version_info::NAME, version_intensity::NAME, version_light::NAME,
+                    version_all::NAME, version_trace::NAME
+                ])
+                .multiple(true)
+        )
+        /* *
+         * SCRIPT SCAN
+         */
+        .help_heading(script_scan::NAME)
+        .arg(
+            Arg::new(default_script::NAME)
+                .about(default_script::HELP)
+                .long(default_script::LONG)
+                .takes_value(false)
+        )
+        .arg(
+            Arg::new(script::NAME)
+                .about(script::HELP)
+                .long(script::LONG)
+                .takes_value(true)
+                .value_name(script::VALUE_NAME)
+                .require_equals(true)
+                .multiple(true)
+                .value_delimiter(script::VALUE_DELIMITER)
+        )
+        .arg(
+            Arg::new(script_args::NAME)
+                .about(script_args::HELP)
+                .long(script_args::LONG)
+                .takes_value(true)
+                .value_name(script_args::VALUE_NAME)
+                .require_equals(true)
+                .multiple(true)
+                .value_delimiter(script_args::VALUE_DELIMITER)
+        )
+        .arg(
+            Arg::new(script_args_file::NAME)
+                .about(script_args_file::HELP)
+                .long(script_args_file::LONG)
+                .takes_value(true)
+                .value_name(script_args_file::VALUE_NAME)
+                .require_equals(true)
+        )
+        .arg(
+            Arg::new(script_trace::NAME)
+                .about(script_trace::HELP)
+                .long(script_trace::LONG)
+                .takes_value(false)
+        )
+        .arg(
+            Arg::new(script_update_db::NAME)
+                .about(script_update_db::HELP)
+                .long(script_update_db::LONG)
+                .takes_value(false)
+        )
+        .arg(
+            Arg::new(script_help::NAME)
+                .about(script_help::HELP)
+                .long(script_help::LONG)
+                .takes_value(true)
+                .value_name(script_help::VALUE_NAME)
+                .require_equals(true)
+                .multiple(true)
+                .value_delimiter(script_help::VALUE_DELIMITER)
+        )
+        .after_help(AFTER_HELP)
 }
