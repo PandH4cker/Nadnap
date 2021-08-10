@@ -1,4 +1,4 @@
-use clap::{crate_name, crate_version, crate_authors, crate_description, App, Arg, ArgGroup, AppSettings};
+use clap::{crate_name, crate_version, crate_authors, crate_description, App, Arg, ArgGroup, AppSettings, ValueHint};
 use crate::constants::{
     USAGE_STR,
     args::*,
@@ -27,6 +27,7 @@ pub fn generate_app() -> App<'static> {
                 .multiple(true)
                 .validator(validators::net::is_hosts)
                 .required_unless_present_any(&[input_list::NAME, input_random::NAME])
+                .value_hint(ValueHint::Hostname)
         )
         .arg(
             Arg::new(input_list::NAME)
@@ -37,6 +38,7 @@ pub fn generate_app() -> App<'static> {
                 .number_of_values(input_list::NUMBER_OF_VALUES)
                 .validator(validators::fs::is_file)
                 .required_unless_present_any(&[target::NAME, input_random::NAME])
+                .value_hint(ValueHint::FilePath)
         )
         .arg(
             Arg::new(input_random::NAME)
@@ -47,6 +49,7 @@ pub fn generate_app() -> App<'static> {
                 .number_of_values(input_random::NUMBER_OF_VALUES)
                 .validator(validators::num::is_positive)
                 .required_unless_present_any(&[input_list::NAME, target::NAME])
+                .value_hint(ValueHint::Other)
         )
         .arg(
             Arg::new(exclude_hosts::NAME)
@@ -56,6 +59,7 @@ pub fn generate_app() -> App<'static> {
                 .takes_value(true)
                 .validator(validators::net::is_hosts)
                 .use_delimiter(true)
+                .value_hint(ValueHint::Hostname)
         )
         .arg(
             Arg::new(exclude_file::NAME)
@@ -65,6 +69,7 @@ pub fn generate_app() -> App<'static> {
                 .takes_value(true)
                 .validator(validators::fs::is_file)
                 .number_of_values(exclude_file::NUMBER_OF_VALUES)
+                .value_hint(ValueHint::FilePath)
         )
         .group(
             ArgGroup::new(target_specification::NAME)
@@ -103,6 +108,7 @@ pub fn generate_app() -> App<'static> {
                 .about(tcp_syn_discovery::HELP)
                 .value_name(tcp_syn_discovery::VALUE_NAME)
                 .takes_value(true)
+                .value_hint(ValueHint::Other)
         )
         .arg(
             Arg::new(tcp_ack_discovery::NAME)
@@ -110,6 +116,7 @@ pub fn generate_app() -> App<'static> {
                 .about(tcp_ack_discovery::HELP)
                 .value_name(tcp_ack_discovery::VALUE_NAME)
                 .takes_value(true)
+                .value_hint(ValueHint::Other)
         )
         .arg(
             Arg::new(udp_discovery::NAME)
@@ -117,6 +124,7 @@ pub fn generate_app() -> App<'static> {
                 .about(udp_discovery::HELP)
                 .value_name(udp_discovery::VALUE_NAME)
                 .takes_value(true)
+                .value_hint(ValueHint::Other)
         )
         .arg(
             Arg::new(sctp_discovery::NAME)
@@ -124,6 +132,7 @@ pub fn generate_app() -> App<'static> {
                 .about(sctp_discovery::HELP)
                 .value_name(sctp_discovery::VALUE_NAME)
                 .takes_value(true)
+                .value_hint(ValueHint::Other)
         )
         .arg(
             Arg::new(icmp_echo_discovery::NAME)
@@ -170,6 +179,7 @@ pub fn generate_app() -> App<'static> {
                 .about(dns_servers::HELP)
                 .takes_value(true)
                 .value_name(dns_servers::VALUE_NAME)
+                .value_hint(ValueHint::Hostname)
         )
         .arg(
             Arg::new(system_dns::NAME)
@@ -312,6 +322,7 @@ pub fn generate_app() -> App<'static> {
                 .about(port_ranges::HELP)
                 .takes_value(true)
                 .value_name(port_ranges::VALUE_NAME)
+                .value_hint(ValueHint::Other)
         )
         .arg(
             Arg::new(exclude_ports::NAME)
@@ -319,6 +330,7 @@ pub fn generate_app() -> App<'static> {
                 .about(exclude_ports::HELP)
                 .takes_value(true)
                 .value_name(exclude_ports::VALUE_NAME)
+                .value_hint(ValueHint::Other)
         )
         .arg(
             Arg::new(fast_mode::NAME)
@@ -338,6 +350,7 @@ pub fn generate_app() -> App<'static> {
                 .about(top_ports::HELP)
                 .takes_value(true)
                 .value_name(top_ports::VALUE_NAME)
+                .value_hint(ValueHint::Other)
         )
         .arg(
             Arg::new(port_ratio::NAME)
@@ -345,6 +358,7 @@ pub fn generate_app() -> App<'static> {
                 .about(port_ratio::HELP)
                 .takes_value(true)
                 .value_name(port_ratio::VALUE_NAME)
+                .value_hint(ValueHint::Other)
         )
         .group(
             ArgGroup::new(port_specification_scan_order::NAME)
