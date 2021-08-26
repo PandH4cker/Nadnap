@@ -24,10 +24,10 @@ pub mod exclude_hosts {
 }
 pub mod exclude_file {
     pub const NAME: &str = "Exclude File";
-    pub const LONG: &str = "exludefile";
+    pub const LONG: &str = "exclude-file";
     pub const VALUE_NAME: &str = "exclude_file";
     pub const HELP: &str = "Exclude list from file";
-    pub const NUMBER_OF_VALUES: u64 = 1_64;
+    pub const NUMBER_OF_VALUES: u64 = 1_u64;
 }
 pub mod list_scan {
     pub const NAME: &str = "List Scan";

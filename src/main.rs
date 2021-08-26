@@ -1,12 +1,16 @@
 #![allow(non_snake_case, dead_code)]
 
-use crate::cli::generate_app;
 use std::error::Error;
+
+use crate::cli::generate_app;
+use crate::core::target_specification;
+use crate::core::target_specification::exclude_hosts::exclude_hosts;
+use crate::core::target_specification::exclude_file::exclude_from_file;
 
 mod validators;
 mod constants;
 mod cli;
-mod target_specification;
+mod core;
 
 fn main() -> Result<(), Box<dyn Error>> {
     let matches = generate_app().get_matches();
@@ -24,8 +28,15 @@ fn main() -> Result<(), Box<dyn Error>> {
             )
         )
     }
-    for t in targets {
-        println!("{}", t);
+    if let Some(t) = matches.values_of(constants::args::exclude_hosts::NAME) {
+        exclude_hosts(&mut targets, t.map(String::from).collect::<Vec<String>>())
     }
+    if let Some(path) = matches.value_of(constants::args::exclude_file::NAME) {
+        exclude_from_file(path, &mut targets)
+    }
+
+    println!("{:?}", targets);
+
+
     Ok(())
 }
