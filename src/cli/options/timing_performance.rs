@@ -1,0 +1,119 @@
+use clap::{
+    App, Arg, ArgGroup
+};
+use crate::constants::{args::*, groups::*};
+
+pub fn add_timing_performance(app: App<'static>) -> App<'static> {
+    app
+        .help_heading(timing_performance::NAME)
+        .arg(
+            Arg::new(timing_template::NAME)
+                .short(timing_template::SHORT)
+                .about(timing_template::HELP)
+                .takes_value(true)
+                .value_name(timing_template::VALUE_NAME)
+                .possible_values(timing_template::POSSIBLE_VALUES)
+        )
+        .arg(
+            Arg::new(min_hostgroup::NAME)
+                .long(min_hostgroup::LONG)
+                .about(min_hostgroup::HELP)
+                .takes_value(true)
+                .value_name(min_hostgroup::VALUE_NAME)
+        )
+        .arg(
+            Arg::new(max_hostgroup::NAME)
+                .long(max_hostgroup::LONG)
+                .about(max_hostgroup::HELP)
+                .takes_value(true)
+                .value_name(max_hostgroup::VALUE_NAME)
+        )
+        .arg(
+            Arg::new(min_parallelism::NAME)
+                .long(min_parallelism::LONG)
+                .about(min_parallelism::HELP)
+                .takes_value(true)
+                .value_name(min_parallelism::VALUE_NAME)
+        )
+        .arg(
+            Arg::new(max_parallelism::NAME)
+                .long(max_parallelism::LONG)
+                .about(max_parallelism::HELP)
+                .takes_value(true)
+                .value_name(max_parallelism::VALUE_NAME)
+        )
+        .arg(
+            Arg::new(min_rtt_timeout::NAME)
+                .long(min_rtt_timeout::LONG)
+                .about(min_rtt_timeout::HELP)
+                .takes_value(true)
+                .value_name(min_rtt_timeout::VALUE_NAME)
+        )
+        .arg(
+            Arg::new(max_rtt_timeout::NAME)
+                .long(max_rtt_timeout::LONG)
+                .about(max_rtt_timeout::HELP)
+                .takes_value(true)
+                .value_name(max_rtt_timeout::VALUE_NAME)
+        )
+        .arg(
+            Arg::new(initial_rtt_timeout::NAME)
+                .long(initial_rtt_timeout::LONG)
+                .about(initial_rtt_timeout::HELP)
+                .takes_value(true)
+                .value_name(initial_rtt_timeout::VALUE_NAME)
+        )
+        .arg(
+            Arg::new(max_retries::NAME)
+                .long(max_retries::LONG)
+                .about(max_retries::HELP)
+                .takes_value(true)
+                .value_name(max_retries::VALUE_NAME)
+        )
+        .arg(
+            Arg::new(host_timeout::NAME)
+                .long(host_timeout::LONG)
+                .about(host_timeout::HELP)
+                .takes_value(true)
+                .value_name(host_timeout::VALUE_NAME)
+        )
+        .arg(
+            Arg::new(scan_delay::NAME)
+                .long(scan_delay::LONG)
+                .about(scan_delay::HELP)
+                .takes_value(true)
+                .value_name(scan_delay::VALUE_NAME)
+        )
+        .arg(
+            Arg::new(max_scan_delay::NAME)
+                .long(max_scan_delay::LONG)
+                .about(max_scan_delay::HELP)
+                .takes_value(true)
+                .value_name(max_scan_delay::VALUE_NAME)
+        )
+        .arg(
+            Arg::new(min_rate::NAME)
+                .long(min_rate::LONG)
+                .about(min_rate::HELP)
+                .takes_value(true)
+                .value_name(min_rate::VALUE_NAME)
+        )
+        .arg(
+            Arg::new(max_rate::NAME)
+                .long(max_rate::LONG)
+                .about(max_rate::HELP)
+                .takes_value(true)
+                .value_name(max_rate::VALUE_NAME)
+        )
+        .group(
+            ArgGroup::new(timing_performance::NAME)
+                .args(&[
+                    timing_template::NAME, min_hostgroup::NAME, max_hostgroup::NAME,
+                    min_parallelism::NAME, max_parallelism::NAME, min_rtt_timeout::NAME,
+                    max_rtt_timeout::NAME, initial_rtt_timeout::NAME, max_retries::NAME,
+                    host_timeout::NAME, scan_delay::NAME, max_scan_delay::NAME,
+                    min_rate::NAME, max_rate::NAME
+                ])
+                .multiple(true)
+        )
+}

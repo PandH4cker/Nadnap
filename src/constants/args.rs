@@ -301,3 +301,311 @@ pub mod script_help {
     pub const VALUE_NAME: &str = "scripts";
     pub const VALUE_DELIMITER: &str = ",";
 }
+pub mod enable_os_detection {
+    pub const NAME: &str = "Enable OS Detection";
+    pub const SHORT: char = 'O';
+    pub const HELP: &str = "Enable OS detection";
+}
+pub mod os_scan_limit {
+    pub const NAME: &str = "OS Scan Limit";
+    pub const LONG: &str = "osscan-limit";
+    pub const HELP: &str = "Limit OS detection to promising targets";
+}
+pub mod os_scan_guess {
+    pub const NAME: &str = "OS Scan Guess";
+    pub const LONG: &str = "osscan-guess";
+    pub const HELP: &str = "Guess OS more aggressively";
+}
+pub mod timing_template {
+    pub const NAME: &str = "Timing Template";
+    pub const SHORT: char = 'T';
+    pub const VALUE_NAME: &str = "0-5";
+    pub const HELP: &str = "Set timing template (higher is faster)";
+    pub const POSSIBLE_VALUES: &[&str] = &["0", "1", "2", "3", "4", "5"];
+}
+pub mod min_hostgroup {
+    pub const NAME: &str = "Minimum Hostgroup";
+    pub const LONG: &str = "min-hostgroup";
+    pub const VALUE_NAME: &str = "size";
+    pub const HELP: &str = "Parallel host scan group sizes (Min)";
+}
+pub mod max_hostgroup {
+    pub const NAME: &str = "Maximum Hostgroup";
+    pub const LONG: &str = "max-hostgroup";
+    pub const VALUE_NAME: &str = "size";
+    pub const HELP: &str = "Parallel host scan group sizes (Max)";
+}
+pub mod min_parallelism {
+    pub const NAME: &str = "Minimum Parallelism";
+    pub const LONG: &str = "min-parallelism";
+    pub const VALUE_NAME: &str = "numprobes";
+    pub const HELP: &str = "Probe parallelization (Min)";
+}
+pub mod max_parallelism {
+    pub const NAME: &str = "Maximum Parallelism";
+    pub const LONG: &str = "max-parallelism";
+    pub const VALUE_NAME: &str = "numprobes";
+    pub const HELP: &str = "Probe parallelization (Max)";
+}
+pub mod min_rtt_timeout {
+    pub const NAME: &str = "Minimum Round Trip Time";
+    pub const LONG: &str = "min-rtt-timeout";
+    pub const VALUE_NAME: &str = "time";
+    pub const HELP: &str = "Specifies probe round trip time. (Min)";
+}
+pub mod max_rtt_timeout {
+    pub const NAME: &str = "Maximum Round Trip Time";
+    pub const LONG: &str = "max-rtt-timeout";
+    pub const VALUE_NAME: &str = "time";
+    pub const HELP: &str = "Specifies probe round trip time. (Max)";
+}
+pub mod initial_rtt_timeout {
+    pub const NAME: &str = "Initial Round Trip Time";
+    pub const LONG: &str = "initial-rtt-timeout";
+    pub const VALUE_NAME: &str = "time";
+    pub const HELP: &str = "Specifies probe round trip time. (Initial)";
+}
+pub mod max_retries {
+    pub const NAME: &str = "Maximum Retries";
+    pub const LONG: &str = "max-retries";
+    pub const VALUE_NAME: &str = "tries";
+    pub const HELP: &str = "Caps number of port scan probe retransmissions.";
+}
+pub mod host_timeout {
+    pub const NAME: &str = "Host Timeout";
+    pub const LONG: &str = "host-timeout";
+    pub const VALUE_NAME: &str = "time";
+    pub const HELP: &str = "Give up on target after this long";
+}
+pub mod scan_delay {
+    pub const NAME: &str = "Scan Delay";
+    pub const LONG: &str = "scan-delay";
+    pub const VALUE_NAME: &str = "time";
+    pub const HELP: &str = "Adjust delay between probes";
+}
+pub mod max_scan_delay {
+    pub const NAME: &str = "Maximum Scan Delay";
+    pub const LONG: &str = "max-scan-delay";
+    pub const VALUE_NAME: &str = "time";
+    pub const HELP: &str = "Adjust delay between probes (Max)";
+}
+pub mod min_rate {
+    pub const NAME: &str = "Minimum Rate";
+    pub const LONG: &str = "min-rate";
+    pub const VALUE_NAME: &str = "number";
+    pub const HELP: &str = "Send packets no slower than <number> per second";
+}
+pub mod max_rate {
+    pub const NAME: &str = "Maximum Rate";
+    pub const LONG: &str = "max-rate";
+    pub const VALUE_NAME: &str = "number";
+    pub const HELP: &str = "Send packets no faster than <number> per second";
+}
+pub mod fragment_packets {
+    pub const NAME: &str = "Fragment Packets";
+    pub const SHORT: char = 'f';
+    pub const HELP: &str = "Fragment packets";
+}
+pub mod fragment_packets_mtu {
+    pub const NAME: &str = "Fragment Packets MTU";
+    pub const LONG: &str = "mtu";
+    pub const VALUE_NAME: &str = "val";
+    pub const HELP: &str = "Fragment packets with given MTU";
+}
+pub mod decoy {
+    pub const NAME: &str = "Decoy";
+    pub const SHORT: char = 'D';
+    pub const HELP: &str = "Cloak a scan with decoys";
+    pub const VALUE_NAME: &str = "decoy1,decoy2[,ME],...";
+    pub const VALUE_DELIMITER: &str = ",";
+}
+pub mod ip_spoof {
+    pub const NAME: &str = "IP Spoof";
+    pub const SHORT: char = 'S';
+    pub const HELP: &str = "Spoof source address";
+    pub const VALUE_NAME: &str = "IP_Address";
+}
+pub mod use_interface {
+    pub const NAME: &str = "Use Interface";
+    pub const SHORT: char = 'e';
+    pub const HELP: &str = "Use specified interface";
+    pub const VALUE_NAME: &str = "iface";
+}
+pub mod use_port {
+    pub const NAME: &str = "Use Port";
+    pub const SHORT: char = 'g';
+    pub const LONG: &str = "source-port";
+    pub const VALUE_NAME: &str = "portnum";
+    pub const HELP: &str = "Use given port number";
+}
+pub mod proxies {
+    pub const NAME: &str = "Proxies";
+    pub const LONG: &str = "proxies";
+    pub const VALUE_NAME: &str = "url1,[url2],...";
+    pub const VALUE_DELIMITER: &str = ",";
+    pub const HELP: &str = "Relay connections through HTTP/SOCKS4 proxies";
+}
+pub mod data {
+    pub const NAME: &str = "Data";
+    pub const LONG: &str = "data";
+    pub const VALUE_NAME: &str = "hex string";
+    pub const HELP: &str = "Append a custom payload to sent packets";
+}
+pub mod data_string {
+    pub const NAME: &str = "Data String";
+    pub const LONG: &str = "data-string";
+    pub const VALUE_NAME: &str = "string";
+    pub const HELP: &str = "Append a custom ASCII string to sent packets";
+}
+pub mod data_length {
+    pub const NAME: &str = "Data Length";
+    pub const LONG: &str = "data-length";
+    pub const VALUE_NAME: &str = "num";
+    pub const HELP: &str = "Append random data to sent packets";
+}
+pub mod ip_options {
+    pub const NAME: &str = "IP Options";
+    pub const LONG: &str = "ip-options";
+    pub const VALUE_NAME: &str = "options";
+    pub const HELP: &str = "Send packets with specified ip options";
+}
+pub mod ttl {
+    pub const NAME: &str = "ttl";
+    pub const LONG: &str = "ttl";
+    pub const VALUE_NAME: &str = "val";
+    pub const HELP: &str = "Set IP time-to-live field";
+}
+pub mod spoof_mac {
+    pub const NAME: &str = "Spoof MAC";
+    pub const LONG: &str = "spoof-mac";
+    pub const VALUE_NAME: &str = "mac address/prefix/vendor name";
+    pub const HELP: &str = "Spoof your MAC address";
+}
+pub mod badsum {
+    pub const NAME: &str = "Badsum";
+    pub const LONG: &str = "badsum";
+    pub const HELP: &str = "Send packets with a bogus TCP/UDP/SCTP checksum";
+}
+pub mod normal_output {
+    pub const NAME: &str = "Normal Output";
+    pub const LONG: &str = "oN";
+    pub const VALUE_NAME: &str = "file";
+    pub const HELP: &str = "Output scan in normal format to the given filename.";
+}
+pub mod XML_output {
+    pub const NAME: &str = "XML Output";
+    pub const LONG: &str = "oX";
+    pub const VALUE_NAME: &str = "file";
+    pub const HELP: &str = "Output scan in XML format to the given filename.";
+}
+pub mod script_kiddie_output {
+    pub const NAME: &str = "Script Kiddie Output";
+    pub const LONG: &str = "oS";
+    pub const VALUE_NAME: &str = "file";
+    pub const HELP: &str = "Output scan in s|<rIpt kIddi3 format to the given filename.";
+}
+pub mod grepable_output {
+    pub const NAME: &str = "Grepable Output";
+    pub const LONG: &str = "oG";
+    pub const VALUE_NAME: &str = "file";
+    pub const HELP: &str = "Output scan in grepable format to the given filename.";
+}
+pub mod all_output {
+    pub const NAME: &str = "All Output";
+    pub const LONG: &str = "oA";
+    pub const VALUE_NAME: &str = "basename";
+    pub const HELP: &str = "Output in the three major formats at once";
+}
+pub mod verbose {
+    pub const NAME: &str = "Verbose";
+    pub const SHORT: char = 'v';
+    pub const HELP: &str = "Increase verbosity level (use -vv or more for greater effect)";
+}
+pub mod debug {
+    pub const NAME: &str = "Debug";
+    pub const SHORT: char = 'd';
+    pub const HELP: &str = "Increase debugging level (use -dd or more for greater effect)";
+}
+pub mod reason {
+    pub const NAME: &str = "Reason";
+    pub const LONG: &str = "reason";
+    pub const HELP: &str = "Display the reason a port is in a particular state";
+}
+pub mod open {
+    pub const NAME: &str = "Open";
+    pub const LONG: &str = "open";
+    pub const HELP: &str = "Only show open (or possibly open) ports";
+}
+pub mod packet_trace {
+    pub const NAME: &str = "Packet Trace";
+    pub const LONG: &str = "packet-trace";
+    pub const HELP: &str = "Show all packets sent and received";
+}
+pub mod iflist {
+    pub const NAME: &str = "Iflist";
+    pub const LONG: &str = "iflist";
+    pub const HELP: &str = "Print host interfaces and routes (for debugging)";
+}
+pub mod append_output {
+    pub const NAME: &str = "Append Output";
+    pub const LONG: &str = "append-output";
+    pub const HELP: &str = "Append to rather than clobber specified output files";
+}
+pub mod resume {
+    pub const NAME: &str = "Resume";
+    pub const LONG: &str = "resume";
+    pub const VALUE_NAME: &str = "filename";
+    pub const HELP: &str = "Resume an aborted scan";
+}
+pub mod stylesheet {
+    pub const NAME: &str = "Stylesheet";
+    pub const LONG: &str = "stylesheet";
+    pub const VALUE_NAME: &str = "path/URL";
+    pub const HELP: &str = "XSL stylesheet to transform XML output to HTML";
+}
+pub mod webxml {
+    pub const NAME: &str = "WebXML";
+    pub const LONG: &str = "webxml";
+    pub const HELP: &str = "Reference stylesheet from Nmap.Org for more portable XML";
+}
+pub mod no_stylesheet {
+    pub const NAME: &str = "No Stylesheet";
+    pub const LONG: &str = "no-stylesheet";
+    pub const HELP: &str = "Prevent associating of XSL stylesheet w/XML output";
+}
+pub mod ipv6_enable {
+    pub const NAME: &str = "IPv6 Enable";
+    pub const SHORT: char = '6';
+    pub const HELP: &str = "Enable IPv6 scanning";
+}
+pub mod os_ver_script_traceroute_enable {
+    pub const NAME: &str = "OS, Version, Script and Traceroute Enable";
+    pub const SHORT: char = 'A';
+    pub const HELP: &str = "Enable OS detection, version detection, script scanning, and traceroute";
+}
+pub mod datadir {
+    pub const NAME: &str = "Data Directory";
+    pub const LONG: &str = "datadir";
+    pub const VALUE_NAME: &str = "dirname";
+    pub const HELP: &str = "Specify custom Nmap data file location";
+}
+pub mod send_eth {
+    pub const NAME: &str = "Send ETH";
+    pub const LONG: &str = "send-eth";
+    pub const HELP: &str = "Send using raw ethernet frames";
+}
+pub mod send_ip {
+    pub const NAME: &str = "Send IP";
+    pub const LONG: &str = "send-ip";
+    pub const HELP: &str = "Send using IP packets";
+}
+pub mod privileged {
+    pub const NAME: &str = "Privileged";
+    pub const LONG: &str = "privileged";
+    pub const HELP: &str = "Assume that the user is fully privileged";
+}
+pub mod unprivileged {
+    pub const NAME: &str = "Unprivileged";
+    pub const LONG: &str = "unprivileged";
+    pub const HELP: &str = "Assume the user lacks raw socket privileges";
+}

@@ -1,6 +1,6 @@
 [package]
 name = "Nadnap"
-version = "0.20.2"
+version = "0.21.2"
 description = "Nadnap - the Powerful Network Scanner"
 authors = [
     "Raphaël Dray <dray@et.esiea.fr>"

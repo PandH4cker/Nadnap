@@ -5,3 +5,8 @@ pub mod scan_techniques;
 pub mod script_scan;
 pub mod service_ver_detection;
 pub mod target_specification;
+pub mod os_detection;
+pub mod timing_performance;
+pub mod firewall_evasion_spoofing;
+pub mod output;
+pub mod misc;

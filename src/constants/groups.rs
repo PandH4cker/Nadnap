@@ -16,3 +16,18 @@ pub mod service_ver_detection {
 pub mod script_scan {
     pub const NAME: &str = "SCRIPT SCAN";
 }
+pub mod os_detection {
+    pub const NAME: &str = "OS DETECTION";
+}
+pub mod timing_performance {
+    pub const NAME: &str = "TIMING AND PERFORMANCE";
+}
+pub mod firewall_evasion_spoofing {
+    pub const NAME: &str =  "FIREWALL/IDS EVASION AND SPOOFING";
+}
+pub mod output {
+    pub const NAME: &str = "OUTPUT";
+}
+pub mod misc {
+    pub const NAME: &str = "MISC";
+}
