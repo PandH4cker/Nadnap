@@ -48,6 +48,7 @@ pub fn add_target_specification(app: App<'static>) -> App<'static> {
                 .validator(validators::net::is_hosts)
                 .use_delimiter(true)
                 .value_hint(ValueHint::Hostname)
+                .multiple(true)
         )
         .arg(
             Arg::new(exclude_file::NAME)
